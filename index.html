@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food choice App by Avanish</title>
+  </head>
+  <style>
+    * {
+      color: aliceblue;
+      font-size: 40px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+    body {
+      background-color: black;
+    }
+    div {
+      background-color: blueviolet;
+      width: 60%;
+      padding-bottom: 10px;
+      border-radius: 20px;
+    }
+    .btn {
+      background-color: rgb(255, 170, 0);
+      border-radius: 20px;
+    }
+    .btn:hover {
+      background-color: limegreen;
+    }
+    input[type="checkbox"] {
+      height: 0.5em;
+      width: 2%;
+    }
+  </style>
+  <body>
+    <center>
+      <div>
+        <h1>Make your Food choice!</h1>
+        <form onsubmit="choice()">
+          <label>Input your name</label>
+          <br />
+          <input type="text" placeholder="Enter your name" id="name" />
+          <br /><br />
+          <label>Select one of the following</label>
+          <br />
+          <input type="checkbox" id="py" checked="true" /> Python
+          <input type="checkbox" id="java" /> Java
+          <input type="checkbox" id="js" /> JavaScript <br /><br />
+          <input type="submit" class="btn" />
+          <br />
+        </form>
+        <h2 id="msg"></h2>
+      </div>
+      <script>
+        function choice() {
+          event.preventDefault();
+          let name = document.getElementById("name");
+          let py = document.getElementById("py");
+          let java = document.getElementById("java");
+          let js = document.getElementById("js");
+          let msg = document.getElementById("msg");
+
+          if (name.value === "") {
+            alert("Please enter a your name!!");
+            msg.innerHTML = "";
+            name.focus();
+            return;
+          }
+          if (name.value.trim() === "") {
+            alert("Name cannot be blank spaces!!");
+            msg.innerHTML = "";
+            name.value = "";
+            name.focus();
+            return;
+          }
+          if (!name.value.match(/^[A-Za-z ]+/)) {
+            alert("Name can contain only alphabets!!");
+            msg.innerHTML = "";
+            name.value = "";
+            name.focus();
+            return;
+          }
+          let choices = "";
+          if (py.checked) choices += "Python ";
+          if (java.checked) choices += "Java ";
+          if (js.checked) choices += "JavaScript ";
+
+          if (choices.length === 0) {
+            choices = "I don't know any languages";
+          }
+
+          let ans = "Name = " + name.value + "\n" + "Choice = " + choices;
+          msg.innerHTML = ans;
+        }
+      </script>
+    </center>
+  </body>
+</html>
